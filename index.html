@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Northius · Zona de evaluación</title>
+<base target="_top">
+<style>
+:root{--navy:#020523;--pink:#F02B58;--white:#FFFFFF;--grey:#E2E2E8;--soft:rgba(255,255,255,.86);--font:Aeonik,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--navy);font-family:var(--font);-webkit-font-smoothing:antialiased}
+h1,h2,p{margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.wrap{max-width:1600px;margin:0 auto;padding-left:40px;padding-right:40px}
+.kicker{font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+
+/* Portada */
+.hero{background:var(--navy);color:var(--white)}
+.hero .wrap{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;padding-top:40px;padding-bottom:56px}
+.hero-main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:18px}
+.back{display:inline-flex;align-items:center;gap:8px;min-height:44px;align-self:flex-start;color:var(--white);text-decoration:none;font-size:15px}
+.back:hover{color:var(--pink)}
+.hero h1{font-size:clamp(38px,5.5vw,60px);line-height:1.05;font-weight:300}
+.hero h1 b{font-weight:700}
+.hero .lead{font-size:19px;line-height:1.45;max-width:640px;color:var(--soft)}
+.stats{flex:1 1 300px;min-width:0;display:flex;gap:32px;border-top:1px solid rgba(255,255,255,.25);padding-top:20px}
+.stats .n{font-size:40px;font-weight:700}
+.stats .n.pk{color:var(--pink)}
+.stats .l{margin-top:4px;font-size:14px}
+
+/* Cómo funciona */
+.how{border-bottom:1px solid var(--grey)}
+.how .wrap{display:flex;flex-direction:column;gap:20px;padding-top:40px;padding-bottom:40px}
+.how h2{font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.how ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 32px}
+.how li{display:flex;gap:16px;padding:16px 0;border-top:2px solid var(--navy)}
+.how .k{font-size:36px;font-weight:700;line-height:1;color:var(--pink)}
+.how .t{font-size:18px;font-weight:700}
+.how .d{margin-top:6px;font-size:15px;line-height:1.45}
+
+/* Tests */
+.tests{background:var(--grey)}
+.tests .wrap{display:flex;flex-direction:column;gap:24px;padding-top:48px;padding-bottom:64px}
+.pick{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.pick h2{font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;font:inherit;font-size:15px;cursor:pointer;border-radius:0;border:1px solid var(--navy);background:var(--white);color:var(--navy)}
+.chip:hover{border-color:var(--pink)}
+.chip[aria-pressed="true"]{background:var(--navy);color:var(--white);font-weight:700}
+.tests .title{margin-top:8px;font-size:40px;line-height:1.1;font-weight:300}
+.tests .title b{font-weight:700}
+.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.row{background:var(--white);display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding:20px 24px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%)}
+.row .num{font-size:40px;font-weight:700;line-height:1;color:var(--pink);width:56px}
+.row .info{flex:999 1 280px;min-width:0}
+.row .name{font-size:22px;font-weight:700}
+.row .meta{margin-top:4px;font-size:14px}
+.review{display:inline-flex;align-items:center;min-height:44px;font-size:15px;color:var(--navy)}
+.review:hover{text-decoration:underline}
+.eval{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-width:180px;height:48px;padding:0 18px;background:var(--navy);color:var(--white);text-decoration:none;font-weight:700;font-size:16px}
+.eval:hover{background:var(--pink);color:var(--navy)}
+
+/* Recuperación */
+.rec .wrap{padding-top:48px;padding-bottom:48px}
+.rec-box{background:var(--pink);color:var(--navy);padding:28px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;clip-path:polygon(0 0,calc(100% - 32px) 0,100% 32px,100% 100%,0 100%)}
+.rec-box .tx{flex:999 1 360px;min-width:0}
+.rec-box h2{font-size:26px;font-weight:700}
+.rec-box p{margin-top:6px;font-size:16px;line-height:1.45}
+.rec-box a{display:inline-flex;align-items:center;gap:20px;min-height:52px;padding:0 22px;background:var(--navy);color:var(--white);text-decoration:none;font-weight:700;font-size:16px}
+.rec-box a:hover{background:#1a1d3a}
+
+/* Pie */
+.foot{background:var(--navy);color:var(--white)}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;padding-top:36px;padding-bottom:36px}
+.claim{display:flex;align-items:center;gap:20px}
+.claim p{font-size:22px;font-weight:300}
+.claim b{font-weight:700}
+.claim em{font-style:normal;font-weight:700;color:var(--pink)}
+.tag{font-size:14px;letter-spacing:.08em}
+
+@media (max-width:640px){
+  .wrap{padding-left:20px;padding-right:20px}
+  .tests .title{font-size:30px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+  .chip{flex-shrink:0;white-space:nowrap}
+  .eval{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="wrap">
+<div class="hero-main">
+<a class="back" href="https://learning.northius.com/course/view.php?id=2"><span aria-hidden="true">←</span> Volver al menú principal</a>
+<p class="kicker">Learning Northius · Zona de evaluación</p>
+<h1>Mide tu nivel,<br><b>módulo a módulo.</b></h1>
+<p class="lead">Evalúa por temas lo que has aprendido en los módulos formativos. ¿Te acabas de incorporar o necesitas reciclaje? Elige tu marca y empieza.</p>
+</div>
+<div class="stats">
+<div><p class="n pk">5</p><p class="l">tests, uno por módulo</p></div>
+<div><p class="n">8</p><p class="l">marcas con test propio</p></div>
+</div>
+</div>
+</section>
+
+<section class="how" aria-labelledby="como-t">
+<div class="wrap">
+<h2 id="como-t">Cómo funciona</h2>
+<ol>
+<li><span class="k" aria-hidden="true">1</span><div><p class="t">Elige marca y módulo</p><p class="d">Selecciona tu marca y el test del módulo que quieres medir.</p></div></li>
+<li><span class="k" aria-hidden="true">2</span><div><p class="t">Lee bien y contesta</p><p class="d">La mayoría son tipo test y tienen trampa. Reflexiona tus respuestas.</p></div></li>
+<li><span class="k" aria-hidden="true">3</span><div><p class="t">Envíalo para corregir</p><p class="d">Revisa tus respuestas las veces que necesites. Al enviarlo recibirás feedback inmediato.</p></div></li>
+</ol>
+</div>
+</section>
+
+<section class="tests" aria-labelledby="tests-t">
+<div class="wrap">
+<div class="pick">
+<h2 id="marca-t">Tu marca</h2>
+<div class="chips" id="chips" role="group" aria-labelledby="marca-t"></div>
+</div>
+<h2 class="title" id="tests-t">Tests de <b class="brand-name">Tokio School</b></h2>
+<ol class="list" id="list"></ol>
+</div>
+</section>
+
+<section class="rec" aria-labelledby="rec-t">
+<div class="wrap">
+<div class="rec-box">
+<div class="tx">
+<h2 id="rec-t">¿Has suspendido algún test?</h2>
+<p>La Zona de recuperación es solo para quien no ha superado algún examen. Si es tu caso, entra desde aquí.</p>
+</div>
+<a href="https://zona-de-recuperacion-3lzbcgd.gamma.site/">Ir a la Zona de recuperación <span aria-hidden="true">→</span></a>
+</div>
+</div>
+</section>
+
+<footer class="foot">
+<div class="wrap">
+<div class="claim">
+<svg viewBox="336.566 380.910 293.020 325.648" width="34" height="38" role="img" aria-label="Northius"><g fill="#F02B58"><path d="M 336.566406 704.03125 L 434.355469 704.03125 L 434.355469 478.703125 L 336.566406 380.910156 Z"/><path d="M 531.792969 608.765625 L 629.585938 706.558594 L 629.585938 383.4375 L 531.792969 383.4375 Z"/></g></svg>
+<p>Quien invierte en <b>formación</b>, invierte en <em>futuro</em></p>
+</div>
+<p class="tag">#PEOPLEONTOP</p>
+</div>
+</footer>
+
+<script>
+(function(){
+  var QUIZ='https://learning.northius.com/mod/quiz/view.php?id=';
+  var SECTION='https://learning.northius.com/course/view.php?id=2&section=';
+  /* Test de cada marca por módulo, en este orden:
+     Onboarding, Producto, Método de venta, Formas de pago, Salesforce */
+  var TESTS={
+    'Campus Training':[1575,1691,1692,191,170],
+    'Flou':[276,289,1692,191,170],
+    'Nubika':[276,1008,1692,191,170],
+    'Tokio School':[276,958,1692,191,170],
+    'CEMP':[276,227,1693,191,170],
+    'MINT':[276,1689,1692,191,170],
+    'Unisport':[276,1576,1575,191,170],
+    '35MM':[276,1458,1692,191,170]
+  };
+  var MODULES=['Onboarding','Producto','Método de venta','Formas de pago','Salesforce'];
+  var SECTIONS=[1,2,18,30,36];
+  var BRANDS=Object.keys(TESTS);
+  var KEY='learning-northius-marca';
+  var current='Tokio School';
+  try{var s=localStorage.getItem(KEY);if(s&&TESTS[s])current=s;}catch(e){}
+
+  var chips=document.getElementById('chips');
+  var list=document.getElementById('list');
+
+  function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
+
+  function render(){
+    var names=document.querySelectorAll('.brand-name');
+    for(var i=0;i<names.length;i++)names[i].textContent=current;
+    var bs=chips.querySelectorAll('button');
+    for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-pressed',bs[j].textContent===current?'true':'false');
+    list.textContent='';
+    MODULES.forEach(function(m,i){
+      var common=BRANDS.every(function(b){return TESTS[b][i]===TESTS[BRANDS[0]][i];});
+      var li=el('li','row');
+      li.appendChild(el('span','num','0'+(i+1)));
+      var info=el('div','info');
+      info.appendChild(el('p','name',m));
+      info.appendChild(el('p','meta','Día '+(i+1)+' · '+(common?'Test común a todas las marcas':'Test específico de '+current)));
+      li.appendChild(info);
+      var rv=el('a','review','Repasar el módulo');rv.href=SECTION+SECTIONS[i];
+      li.appendChild(rv);
+      var ev=el('a','eval','Evalúame ');ev.href=QUIZ+TESTS[current][i];
+      ev.setAttribute('aria-label','Evalúame: test de '+m+', '+current);
+      var ar=el('span',null,'→');ar.setAttribute('aria-hidden','true');ev.appendChild(ar);
+      li.appendChild(ev);
+      list.appendChild(li);
+    });
+  }
+
+  BRANDS.forEach(function(n){
+    var b=el('button','chip',n);b.type='button';
+    b.addEventListener('click',function(){current=n;try{localStorage.setItem(KEY,n);}catch(e){}render();});
+    chips.appendChild(b);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
